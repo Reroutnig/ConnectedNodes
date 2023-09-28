@@ -2,25 +2,29 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-/* ****************************************  */
-/* Nishat Quyoum                             */
-/* Student ID:                               */
-/* CS 3310, Fall 2023                        */
-/* Programming Assignment 1                  */
-/* Breif Description of file                 */
-/* ****************************************  */
+
+/**
+ * Class for traversing a graph and finding connected components.
+ */
 public class GraphTraversal {
+
     // Adjacency list representation of the graph
     private static Map<Integer, List<Integer>> graph; // Stores the graph as an adjacency list
 
     // Define a final constant for the expected number of command-line arguments
-    private static final int expectedNumArgs = 1; // Specifies the expected number of command-line arguments
+    private static final int EXPECTED_NUM_ARGS = 1; // Specifies the expected number of command-line arguments
 
+    /**
+     * Main method for reading input, building the graph, and finding connected components.
+     *
+     * @param args Command-line arguments (expects one argument: the input file path).
+     * @throws IOException If an I/O error occurs while reading the input file.
+     */
     public static void main(String[] args) throws IOException {
-        if (args.length != expectedNumArgs) {
+        if (args.length != EXPECTED_NUM_ARGS) {
             // Check if the correct number of command-line arguments is provided
             System.err.println("Usage: java ConnectedComponents <input_file>");
-            System.exit(1);
+            System.exit(1); // Exit the program if the arguments are not provided as expected
         }
 
         String inputFile = args[0]; // Stores the input file path provided as a command-line argument
@@ -64,7 +68,7 @@ public class GraphTraversal {
             }
             graphCount++;
         }
-        reader.close();
+        reader.close(); // Close the input file reader
     }
 
     /**
@@ -123,4 +127,3 @@ public class GraphTraversal {
         graph = newGraph;
     }
 }
-
