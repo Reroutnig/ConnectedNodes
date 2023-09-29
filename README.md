@@ -1,6 +1,9 @@
 # Graph_Traversal
 - How to run this program
-    1. in the cmd line/terminal enter 'javac nameofFile.java'
+    1. in the command line/terminal enter 'javac GraphTraversal.java'
     2. press enter to compile the code
-    3. This should create a '.class' file of your java file. Click on that file and open terminal to type 'java nameofFile.java' and run the program
+    4. a 'GraphTraversal.class' should have been created.
+    5. on the command line type 'java GraphTrraversal.java input.txt' and press enter
+    6. the terminal should display the outputs of the graphs in input
+    
 
