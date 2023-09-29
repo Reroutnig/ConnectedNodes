@@ -3,23 +3,29 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-/**
- * Class for traversing a graph and finding connected components.
- */
+/**********************************************************************/
+/* Nishat Quyoum 
+ * Student ID: 015087722
+ * CS 3310, Fall 2023
+ * Programming Assignment 1
+ * Connected Component: traverse given graph from file and 
+ * finds the connected component
+/* Class for traversing a graph and finding connected components.    */
+/**********************************************************************/
 public class GraphTraversal {
 
-    // Adjacency list representation of the graph
-    private static Map<Integer, List<Integer>> graph; // Stores the graph as an adjacency list
+    // Stores the graph as an adjacency list
+    private static Map<Integer, List<Integer>> graph; 
 
     // Define a final constant for the expected number of command-line arguments
-    private static final int EXPECTED_NUM_ARGS = 1; // Specifies the expected number of command-line arguments
+    private static final int EXPECTED_NUM_ARGS = 1; 
 
-    /**
-     * Main method for reading input, building the graph, and finding connected components.
-     *
-     * @param args Command-line arguments (expects one argument: the input file path).
-     * @throws IOException If an I/O error occurs while reading the input file.
-     */
+    /*******************************************************************************/
+    /* Method: main */
+    /* Purpose: reads input file, builds graph, finds connected components */
+    /* Parameters: args Command-line arguments (expects one argument: the input file path) */
+    /* @throws IOException If an I/O error occurs while reading the input file*/     
+    /******************************************************************************/
     public static void main(String[] args) throws IOException {
         if (args.length != EXPECTED_NUM_ARGS) {
             // Check if the correct number of command-line arguments is provided
@@ -46,7 +52,6 @@ public class GraphTraversal {
             }
 
             for (int i = 1; i < tokens.length; i++) {
-                // Parse edge information and add edges to the graph
                 String[] edge = tokens[i].replaceAll("\\(", "").replaceAll("\\)", "").split(",");
                 int v1 = Integer.parseInt(edge[0]);
                 int v2 = Integer.parseInt(edge[1]);
@@ -54,12 +59,12 @@ public class GraphTraversal {
                 getGraph().get(v2).add(v1);
             }
 
-            List<Set<Integer>> components = findConnectedComponents();
+            List<Set<Integer>> components = ConnectedComponents();
 
-            System.out.println("Graph" + graphCount + ":");
+            System.out.println("Graph"+graphCount + ":");
             if (components.size() == 1) {
-                // Output connected components information
-                System.out.println("One connected component: " + components.get(0));
+                // Output each grpah's connected components
+                System.out.println("1 connected component: " + components.get(0));
             } else {
                 System.out.println(components.size() + " connected components:");
                 for (Set<Integer> component : components) {
@@ -71,12 +76,13 @@ public class GraphTraversal {
         reader.close(); // Close the input file reader
     }
 
-    /**
-     * Find connected components in the graph.
-     *
-     * @return A list of sets where each set represents a connected component in the graph.
-     */
-    private static List<Set<Integer>> findConnectedComponents() {
+    /**********************************************************/
+    /* Method: ConnectedComponents
+    /* Purpose: Find connected components in the graph. */
+    /* Parameter: @return A list of sets where each set represents a 
+    /* connected component in the graph.*/
+    /**********************************************************/
+    private static List<Set<Integer>> ConnectedComponents() {
         List<Set<Integer>> components = new ArrayList<>(); // Stores the connected components
         Set<Integer> visited = new HashSet<>(); // Stores visited vertices
 
@@ -90,13 +96,13 @@ public class GraphTraversal {
         return components;
     }
 
-    /**
-     * Depth-first search (DFS) method to explore connected components.
-     *
-     * @param vertex    The current vertex being explored.
-     * @param visited   A set of visited vertices.
-     * @param component The current connected component being constructed.
-     */
+    /*******************************************************************/
+     /* Method: Depth-first search
+     /* Purpose: to find connected components. */ 
+     /* Parameters: @param vertex    The current vertex being explored.
+     /* @param visited   A set of visited vertices.
+     /* @param component The current connected component being constructed.*/
+    /*******************************************************************/
     private static void dfs(int vertex, Set<Integer> visited, Set<Integer> component) {
         visited.add(vertex); // Mark the vertex as visited
         component.add(vertex); // Add the vertex to the current connected component
@@ -109,20 +115,20 @@ public class GraphTraversal {
         }
     }
 
-    /**
-     * Get the graph.
-     *
-     * @return The adjacency list representation of the graph.
-     */
+   /*******************************************************************/
+     /* Method: getGraph.
+     /* Purpose: gets the graph
+     /* Parameter: @return the adjacency list representation of the graph.
+    /*******************************************************************/
     public static Map<Integer, List<Integer>> getGraph() {
         return graph;
     }
 
-    /**
-     * Set the graph.
-     *
-     * @param newGraph The new adjacency list representation of the graph.
-     */
+    /*******************************************************************/
+     /* Method: setGraph
+     /* Purpose: Set the graph.
+     /* Parameter: @param newGraph the new adjacency list representation of the graph
+     /*******************************************************************/
     public static void setGraph(Map<Integer, List<Integer>> newGraph) {
         graph = newGraph;
     }
